@@ -7,25 +7,20 @@
 */
 
 'use strict';
+const {modelDB} = require("../model/connect");
 
 module.exports = function (app) {
 
   app.route('/api/books')
-    .get(function (req, res){
+    .get(async function (req, res){
       //response will be array of book objects
-      Book.find({}, (err, res)=>{
-        if(err){
-          return res.status(500).json({error: 'An error occurred while fetching books'});
-        }
-
-        const formatedBooks = books.map(book =>({
-          _id: book._id,
-          title: book.title,
-          commentcount: book.comments.length
-        }));
-      });
       //json res format: [{"_id": bookid, "title": book_title, "commentcount": num_of_comments },...]
-      res.json(formatedBooks);
+      try{
+        const data = await modelDB.find();
+        res.json(data);
+      }catch(err){
+        console.log(err);
+      }
     })
     
     .post(function (req, res){
