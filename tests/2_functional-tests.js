@@ -41,6 +41,22 @@ suite('Functional Tests', function() {
     suite('POST /api/books with title => create book object/expect book object', function() {
       
       test('Test POST /api/books with title', function(done) {
+        chai
+          .request(server)
+          .post('/api/books')
+          .send({
+            title: "Manusia Salmon",
+          })
+          .end(function(req, res){
+            assert.equal(res.status, 200);
+            assert.property(
+              res.body,
+              "title",
+              "Books in array should contain title"
+            );
+            _id = res.body._id;
+            done();
+          })
         //done();
       });
       
