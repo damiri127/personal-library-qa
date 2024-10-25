@@ -18,6 +18,7 @@ module.exports = function (app) {
       try{
         const data = await modelDB.find();
         res.json(data);
+        console.log(data);
       }catch(err){
         console.log('its error');
       }
@@ -58,7 +59,7 @@ module.exports = function (app) {
       //json res format: {"_id": bookid, "title": book_title, "comments": [comment,comment,...]}
       try{
         const data = await modelDB.findById(bookid);
-        if (!data) return res.send("no books exists");
+        if (!data) return res.send("no book exists");
         return res.json(data);
       }catch(error){
         return "its error";
