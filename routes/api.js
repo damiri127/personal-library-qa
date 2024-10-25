@@ -19,7 +19,7 @@ module.exports = function (app) {
         const data = await modelDB.find();
         res.json(data);
       }catch(err){
-        console.log('Error nih cuy!');
+        console.log('its error');
       }
     })
     
@@ -29,14 +29,14 @@ module.exports = function (app) {
       if (!title) return res.send("missing required field title");
       const data = new modelDB({
         title,
-        commentcount: 0
+        commentcount: 0,
       });
       data
         .save()
         .then((user)=>{
           return res.json({
             _id: user._id,
-            title: user.title
+            title: user.title,
           });
         }).catch((err)=>{
           console.error("Error saving user:", err);
@@ -73,16 +73,17 @@ module.exports = function (app) {
       const checkdata = await modelDB.findById(bookid);
       if(!checkdata) return res.send("no book exists");
       try{
-        await modelDB.updateOne({
-          _id: bookid,
-        },
-        {
-          $push: {comment: comment},
-          $inc: {commentcount: 1},
-        },
-      );
-      const data = await modelDB.findById(bookid);
-      return res.json(data);
+        await modelDB.updateOne(
+          {
+            _id: bookid,
+          },
+          {
+            $push: { comments: comment },
+            $inc: { commentcount: 1 },
+          },
+        );
+        const data = await modelDB.findById(bookid);
+        return res.json(data);
       }catch(error){
         console.log(error);
       }
