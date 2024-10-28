@@ -13,11 +13,8 @@
   </style>
 </head>
 <body>
-<header>
-  <h1>Personal Library</h1>
-</header>
 <br>
-<div id ='sampleposting'>
+<!-- <div id ='sampleposting'>
   <h2 style="text-align: left">Test API responses</h2>
   <form action="/api/books" method="post" class="border">
     <h4>Test post to /api/books</h4>
@@ -33,23 +30,25 @@
     <input type="text" id="comment" name="comment" value=""><br>
     <input type="submit" value="Submit">
   </form>
-</div>
-<hr style='margin: 50px'>
-<div id='sampleui'>
-  <h2 style="text-align: left">Sample Front-End</h2>
-  <form id="newBookForm" class="border">
+</div> -->
+<hr style="margin: 50px">
+<div id="sampleui">
+  <h2>Your Personal Library</h2>
+  <form id="newBookForm" class="border" aria-label="Add New Book Form">
     <label for="bookTitleToAdd">New Book Title</label>
-    <input type="text" id="bookTitleToAdd" name="title" placeholder="Moby Dick" style="width: 295px">
-    <button type="submit" value="Submit" id="newBook">Submit New Book!</button>
+    <input type="text" id="bookTitleToAdd" name="title" placeholder="Enter book title" aria-required="true" />
+    <button type="submit" value="Submit" id="newBook">Add Book</button>
   </form>
-  <div id='display'></div>
-  <div id='bookDetail' class='border'>
-    <p id='detailTitle'>Select a book to see it's details and comments</p>
-    <ol id='detailComments'></ol>
+  <div id="display"></div>
+  <div id="bookDetail" class="border">
+    <p id="detailTitle">Select a book to see its details and comments</p>
+    <ol id="detailComments" aria-live="polite"></ol>
   </div>
-  <button id='deleteAllBooks'>Delete all books...</button>
+  <button id="deleteAllBooks" aria-label="Delete all books">Delete all books</button>
 </div>
-<hr style='margin: 50px'>
+<hr style="margin: 50px">
+
+
 
 <script src="https://code.jquery.com/jquery-2.2.1.min.js"
         integrity="sha256-gvQgAFzTH6trSrAWoH1iPo9Xc96QxSZ3feW6kem+O00="
